@@ -14,3 +14,72 @@
 @import url('./vite-promo.css');
 @import url('./badges.css');
 @import url('./back-link.css');
+
+/* ------- Form ------ */
+
+main {
+  width: 1128px;
+  margin: 0 auto;
+}
+
+.search-form {
+  margin-top: 36px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-input {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 272px;
+  /* height: 40px; */
+  padding: 8px 16px;
+  color: #2e2f42;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.submit-input::placeholder {
+  color: #808080;
+}
+
+.button-search {
+  border-radius: 8px;
+  border: none;
+  padding: 8px 16px;
+  width: 91px;
+  /* height: 40px; */
+  background-color: #4e75ff;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.button-search:hover {
+  background-color: #6c8cff;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  width: 360px;
+  height: 200px;
+  overflow: hidden;
+  cursor: zoom-in;
+}

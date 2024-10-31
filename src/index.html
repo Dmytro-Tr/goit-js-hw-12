@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600&display=swap" rel="stylesheet">
+
   <link rel="icon" type="image/svg+xml" href="./img/icons8-google-поиск.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HW_11</title>
@@ -10,6 +12,14 @@
 </head>
 
 <body>
+
+  <main>
+    <form action="submit" class="js-search-form search-form">
+      <input type="text" name="" placeholder="Search images..." autofocus class="submit-input">
+      <button type="submit" class="button-search">Search</button>
+    </form>
+    <ul class="js-gallery gallery"></ul>
+  </main>
 
   <script type="module" src="./main.js"></script>
 </body>
