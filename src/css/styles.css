@@ -18,8 +18,10 @@
 /* ------- Form ------ */
 
 main {
-  width: 1128px;
+  max-width: 1158px;
   margin: 0 auto;
+  padding: 0 15px;
+
 }
 
 .search-form {
@@ -75,11 +77,58 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  justify-content: center;
 }
 
 .gallery-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-link {
+  cursor: zoom-in;
   width: 360px;
   height: 200px;
   overflow: hidden;
-  cursor: zoom-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #808080;
+}
+
+.gallery-description-list {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #808080;
+
+}
+
+.gallery-description-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.gallery-description-headline {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.gallery-description-quantity {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
