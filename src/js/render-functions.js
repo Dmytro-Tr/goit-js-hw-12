@@ -1,5 +1,5 @@
 /* функції для відображення елементів інтерфейсу -> */
-export function createMarkup(arr) {
+function createMarkup(arr) {
   return arr
     .map(
       ({
@@ -41,3 +41,5 @@ export function createMarkup(arr) {
     .join('');
 }
 /* <- */
+
+export { createMarkup };

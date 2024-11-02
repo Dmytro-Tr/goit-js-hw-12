@@ -47,11 +47,6 @@ function handleSearch(event) {
 
     if (lightbox) {
       lightbox.refresh();
-    } else {
-      lightbox = new SimpleLightbox('.gallery .galleries a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
     }
   });
 

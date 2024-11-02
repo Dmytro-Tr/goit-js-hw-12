@@ -2,7 +2,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '43801311-7231ce11da623161c2dfbe05c';
 
 /* функції для HTTP-запитів  -> */
-export function fetchData(encoderSearch = '') {
+function fetchData(encoderSearch = '') {
   const params = new URLSearchParams({
     key: API_KEY,
     q: encoderSearch,
@@ -24,5 +24,6 @@ export function fetchData(encoderSearch = '') {
       // console.log('error', error);
     });
 }
-
 /* <- */
+
+export { fetchData };
