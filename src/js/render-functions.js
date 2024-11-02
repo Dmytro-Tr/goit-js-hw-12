@@ -1,12 +1,3 @@
-/* ----- SimpleLightbox ----- */
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
-const galleryLightbox = new SimpleLightbox('.gallery-link', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
-
 /* функції для відображення елементів інтерфейсу -> */
 export function createMarkup(arr) {
   return arr
@@ -19,7 +10,8 @@ export function createMarkup(arr) {
         views,
         comments,
         downloads,
-      }) => `
+      }) => {
+        return `
         <li class="gallery-item">
           <a class="gallery-link" href="${largeImageURL}">
             <img src="${webformatURL}" alt="${tags}" width="360">
@@ -43,7 +35,8 @@ export function createMarkup(arr) {
             </li>
           </ul>
         </li>
-      `
+        `;
+      }
     )
     .join('');
 }

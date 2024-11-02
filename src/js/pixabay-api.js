@@ -13,7 +13,7 @@ export function fetchData(encoderSearch = '') {
 
   return fetch(`${BASE_URL}?${params}`)
     .then(response => {
-      console.log('response', response);
+      // console.log('response', response);
 
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -21,7 +21,8 @@ export function fetchData(encoderSearch = '') {
       return response.json();
     })
     .catch(error => {
-      console.log('error', error);
+      // console.log('error', error);
     });
 }
+
 /* <- */
