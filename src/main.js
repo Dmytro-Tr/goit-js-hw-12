@@ -1,3 +1,6 @@
+/* ----- axios ----- */
+import axios from 'axios';
+
 /* ----- iziToast ----- */
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
