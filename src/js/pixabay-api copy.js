@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '43801311-7231ce11da623161c2dfbe05c';
 
@@ -26,6 +24,6 @@ function fetchData(encoderSearch = '') {
       // console.log('error', error);
     });
 }
-
 /* <- */
+
 export { fetchData };

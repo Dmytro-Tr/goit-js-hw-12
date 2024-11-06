@@ -23,15 +23,6 @@ const gallery = document.querySelector('.js-gallery');
 // const input = document.querySelector('.submit-input');
 const loader = document.querySelector('.loader');
 
-/* NEW */
-
-// Початкове значення параметра page
-const page = 1;
-// Контролює кількість елементів у групі
-const per_page = 15;
-
-/* --- */
-
 form.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
@@ -62,11 +53,6 @@ function handleSearch(event) {
     }
   });
 
-  try {
-  } catch (error) {
-    console.log('error', error);
-  }
-
   form.reset();
   gallery.innerHTML = '';
 }
@@ -82,6 +68,6 @@ function showMessage() {
     closeOnClick: 'true',
     progressBarColor: '#fff',
     transitionIn: 'bounceInDown',
-    transitionOut: 'fadeOutLeft',
+    transitionOut: 'flipOutX',
   });
 }
