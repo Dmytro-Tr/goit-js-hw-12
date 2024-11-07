@@ -10,7 +10,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 /* ----- JS ----- */
-import { fetchData } from './js/pixabay-api';
+import { searchImages } from './js/pixabay-api';
 import { createMarkup } from './js/render-functions';
 
 const lightbox = new SimpleLightbox('.gallery-link', {
@@ -46,7 +46,7 @@ function handleSearch(event) {
 
   loader.style.display = 'block'; //Loader on
 
-  fetchData(encoderSearch).then(data => {
+  searchImages(encoderSearch).then(data => {
     // console.log('then', data);
     loader.style.display = 'none'; //Loader off
 
