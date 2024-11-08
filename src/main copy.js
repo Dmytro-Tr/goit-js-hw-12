@@ -29,7 +29,7 @@ function handleSearch(event) {
   event.preventDefault();
 
   const encoderSearch = event.target.elements.search.value.trim();
-  // console.log('encoderSearch', encoderSearch);
+  console.log('encoderSearch', encoderSearch);
 
   if (encoderSearch.trim() === '') {
     return;
