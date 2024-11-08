@@ -13,7 +13,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { searchImages } from './js/pixabay-api';
 import { createMarkup } from './js/render-functions';
 
-import Container from 'postcss/lib/container';
+import Container from 'postcss/lib/container'; // ???
 
 const lightbox = new SimpleLightbox('.gallery-link', {
   captionsData: 'alt',
@@ -27,15 +27,13 @@ const loadBtn = document.querySelector('.load-more');
 
 let page = 1;
 let per_page = 15;
-let totalPage = 0;
+let totalHits = 0;
 let query = '';
 
 //=============================================================
 
 form.addEventListener('submit', handleSearch);
 loadBtn.addEventListener('click', loadMore);
-
-// loadBtn.classList.replace('load-more', 'load-more-hiden');
 
 async function handleSearch(event) {
   event.preventDefault();
@@ -45,21 +43,19 @@ async function handleSearch(event) {
   page = 1;
 
   query = event.target.elements.search.value.trim();
-  // console.log('query', query);
 
   if (query.trim() === '') {
     loadBtn.disabled = true;
     loadBtn.classList.replace('load-more', 'load-more-hidden');
-    showMessage('Search field cannot be empty!');
+    warningMessage();
     return;
   }
 
-  loader.style.display = 'block'; //Loader on
+  loader.classList.replace('loader-on', 'loader'); //Loader on
 
   searchImages(query, page)
     .then(data => {
-      loader.style.display = 'none'; //Loader off
-      // loadBtn.disabled = true;
+      loader.classList.replace('loader', 'loader-on'); //Loader off
       loadBtn.classList.replace('load-more-hidden', 'load-more');
 
       if (data.hits.length === 0) {
@@ -72,13 +68,11 @@ async function handleSearch(event) {
       form.reset();
       gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
 
-      if (page === 1) totalPage = data.totalHits;
-      console.log('totalPage', totalPage);
+      if (page === 1) totalHits = data.totalHits;
 
-      if (page * 15 >= totalPage) {
+      if (page * per_page >= totalHits) {
         loadBtn.classList.replace('load-more-hidden', 'load-more');
       }
-      console.log('page', page);
 
       lightbox.refresh();
       form.reset();
@@ -90,50 +84,63 @@ async function handleSearch(event) {
 
 async function loadMore() {
   page += 1;
-  console.log('page', page);
   loadBtn.disabled = true;
+
+  loader.classList.replace('loader', 'loader-on'); //Loader off
 
   try {
     const data = await searchImages(query, page);
-    // console.log(data, 'page');
     gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     lightbox.refresh();
 
     loadBtn.disabled = false;
-    loader.style.display = 'none';
 
     const item = document.querySelector('.gallery-item');
     const itemHeight = item.getBoundingClientRect().height;
 
     window.scrollBy({
-      left: 0,
       top: itemHeight * 2,
+      left: 0,
       behavior: 'smooth',
     });
 
-    if (page * 15 >= totalPage) {
+    if (page * per_page >= totalHits) {
       loadBtn.disabled = false;
       loadBtn.classList.replace('load-more', 'load-more-hidden');
-      showMessage("We're sorry, but you've reached the end of search results.");
-      // return;
+      infoMessage("We're sorry, but you've reached the end of search results.");
     }
+
+    loader.classList.replace('loader-on', 'loader'); //Loader on
   } catch (error) {
     alert(error.message);
   } finally {
     loadBtn.disabled = false;
+    loader.classList.replace('loader', 'loader-on'); //Loader off
   }
 }
 
 /* ---------------------- iziToast ---------------------- */
-function showMessage(message) {
-  iziToast.show({
-    message,
-    // message: `Sorry, there are no images matching your search query. Please try again!`,
+function infoMessage(message) {
+  iziToast.info({
+    title: 'We are sorry, ',
+    message: `but you've reached the end of search results.`,
     titleSize: '16px',
-    messageColor: '#fff',
-    backgroundColor: '#ef4040',
     position: 'topRight',
-    timeout: '3000',
+    timeout: '5000',
+    closeOnClick: 'true',
+    progressBarColor: '#fff',
+    transitionIn: 'bounceInDown',
+    transitionOut: 'fadeOutRight',
+  });
+}
+
+function warningMessage(message) {
+  iziToast.warning({
+    title: 'Caution',
+    message: `Search field cannot be empty!`,
+    titleSize: '16px',
+    position: 'topRight',
+    timeout: '5000',
     closeOnClick: 'true',
     progressBarColor: '#fff',
     transitionIn: 'bounceInDown',
