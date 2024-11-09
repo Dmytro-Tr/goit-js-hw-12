@@ -108,13 +108,13 @@ async function loadMore() {
       loadBtn.disabled = false;
       loadBtn.classList.replace('load-more', 'load-more-hidden');
       infoMessage("We're sorry, but you've reached the end of search results.");
+      loader.classList.replace('loader-on', 'loader'); //Loader on
     }
-
-    loader.classList.replace('loader-on', 'loader'); //Loader on
   } catch (error) {
     alert(error.message);
   } finally {
     loadBtn.disabled = false;
+    // loader.classList.replace('loader', 'loader-on'); //Loader off
   }
 }
 
