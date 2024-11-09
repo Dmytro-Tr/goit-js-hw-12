@@ -59,9 +59,8 @@ async function handleSearch(event) {
       loadBtn.classList.replace('load-more-hidden', 'load-more');
 
       if (data.hits.length === 0) {
-        showMessage(
-          'Sorry, there are no images matching your search query. Please try again!'
-        );
+        noMessage();
+        loadBtn.classList.replace('load-more', 'load-more-hidden');
         return;
       }
 
@@ -72,6 +71,13 @@ async function handleSearch(event) {
 
       if (page * per_page >= totalHits) {
         loadBtn.classList.replace('load-more-hidden', 'load-more');
+      }
+
+      console.log(totalHits);
+
+      if (totalHits < per_page) {
+        loadBtn.classList.replace('load-more', 'load-more-hidden');
+        infoMessage();
       }
 
       lightbox.refresh();
@@ -107,11 +113,13 @@ async function loadMore() {
     if (page * per_page >= totalHits) {
       loadBtn.disabled = false;
       loadBtn.classList.replace('load-more', 'load-more-hidden');
-      infoMessage("We're sorry, but you've reached the end of search results.");
+      infoMessage();
       loader.classList.replace('loader-on', 'loader'); //Loader on
     }
   } catch (error) {
-    alert(error.message);
+    iziToast.show({
+      message: `${error}`,
+    });
   } finally {
     loadBtn.disabled = false;
     loader.classList.replace('loader', 'loader-on'); //Loader off
@@ -119,7 +127,7 @@ async function loadMore() {
 }
 
 /* ---------------------- iziToast ---------------------- */
-function infoMessage(message) {
+function infoMessage() {
   iziToast.info({
     title: 'We are sorry, ',
     message: `but you've reached the end of search results.`,
@@ -133,10 +141,24 @@ function infoMessage(message) {
   });
 }
 
-function warningMessage(message) {
+function warningMessage() {
   iziToast.warning({
     title: 'Caution',
     message: `Search field cannot be empty!`,
+    titleSize: '16px',
+    position: 'topRight',
+    timeout: '5000',
+    closeOnClick: 'true',
+    progressBarColor: '#fff',
+    transitionIn: 'bounceInDown',
+    transitionOut: 'fadeOutRight',
+  });
+}
+
+function noMessage() {
+  iziToast.error({
+    title: 'Sorry, ',
+    message: `there is no result for your request!`,
     titleSize: '16px',
     position: 'topRight',
     timeout: '5000',
