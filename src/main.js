@@ -114,7 +114,7 @@ async function loadMore() {
     alert(error.message);
   } finally {
     loadBtn.disabled = false;
-    // loader.classList.replace('loader', 'loader-on'); //Loader off
+    loader.classList.replace('loader', 'loader-on'); //Loader off
   }
 }
 
